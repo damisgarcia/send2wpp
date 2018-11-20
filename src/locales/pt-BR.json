@@ -1,3 +1,13 @@
 {
-    "message": "Olá i18n !!"
+    "title":"Send2WPP",
+    "description": "Converse sem adicionar nos contatos",
+    "countryCode":"55",
+    "countryCodeLabel": "Código do Pais",
+    "phoneMask": "(##) #####-####",
+    "phoneNumberLabel":"Número do Telefone",
+    "send": "Enviar",
+    "message": "Olá tudo bem,",
+    "validations":{
+        "required": "Campo Obrigatório"
+    }
 }

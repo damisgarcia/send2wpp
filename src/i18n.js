@@ -13,15 +13,16 @@ function loadLocaleMessages () {
       messages[locale] = locales(key)
     }
   })
+
   return messages
 }
 
-function getUserLang(){
-  return window.navigator.userLanguage || window.navigator.language || process.env.VUE_APP_I18N_LOCALE
+export function getUserLang(){
+  return window.navigator.userLanguage || window.navigator.language
 }
 
 export default new VueI18n({
-  locale: getUserLang(),
-  fallbackLocale: getUserLang(),
+  locale: process.env.VUE_APP_I18N_LOCALE,
+  fallbackLocale: process.env.VUE_APP_I18N_LOCALE,
   messages: loadLocaleMessages()
 })

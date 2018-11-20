@@ -1,7 +1,7 @@
 {
   "title": "Send2WPP",
   "description": "Chat without adding contacts.",
-  "countryCode": "44",
+  "countryCode": "1",
   "countryCodeLabel": "Country Code",
   "phoneMask": "(##) ####-####",
   "phoneNumberLabel": "Phone Number",

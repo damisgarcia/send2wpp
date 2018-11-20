@@ -2,7 +2,7 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Send2WPP</span>
+        <span>{{ $t('title') }}</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
@@ -15,6 +15,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import { getUserLang } from '@/i18n'
 
 export default {
   name: 'App',
@@ -25,6 +26,9 @@ export default {
     return {
       //
     }
+  },
+  beforeMount(){
+    this.$i18n.locale = getUserLang()
   }
 }
 </script>

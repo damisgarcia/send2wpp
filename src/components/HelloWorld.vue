@@ -11,30 +11,35 @@
         <v-container grid-list-lg>
           <div class="mt-5 mb-4">
             <div class="display-3">Send2WPP</div>
-            <p>A maneira mais fácil de conversar no whatsapp sem adicionar contato</p>
+            <p>{{$t('description')}}</p>
           </div>
-          <v-layout row wrap justify-center>
-            <v-flex xs2>
+          <v-layout row wrap align-center justify-center>
+            <v-flex sm2 xs3>
               <v-text-field
                 v-model="countryCode"
-                name=""
-                label="Country Code"
+                name="countryCode"
+                :label="$t('countryCodeLabel')"
                 :rules="countryCodeRules"
+                :mask="'+##'"
                 required
               ></v-text-field>
             </v-flex>
-            <v-flex xs8>
+            <v-flex sm8>
               <v-text-field                  
                 v-model="phoneNumber"
-                label="Phone Number"
+                :label="$t('phoneNumberLabel')"
+                :autofocus="true"
                 :rules="phoneNumberRules"
+                :mask="$t('phoneMask')"
                 required
               ></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row justify-center>
-            <v-flex xs3>
-              <v-btn color="primary" :disabled="!valid" :href="`https://api.whatsapp.com/send?phone=${countryCode}${phoneNumber}&text=Olá`" target="blank" :large="true" :block="true" :round="true">Enviar</v-btn>
+            <v-flex sm4 xs10>
+              <v-btn color="primary" :disabled="!valid" :href="`https://api.whatsapp.com/send?phone=${countryCode}${phoneNumber}&text=${$t('message')}`" target="blank" :large="true" :block="true" :round="true">
+                {{ $t('send') }}
+              </v-btn>
             </v-flex>
           </v-layout>
         </v-container>
@@ -45,21 +50,27 @@
 </template>
 
 <script>
+  import { required, minLength  } from 'vuelidate/lib/validators'
+
   export default {
     data: () => ({
       valid: false,
+      requiredMessage: '',
       countryCode: '',
-      countryCodeRules: [
-        v => !!v || 'Country Code is required'
-      ],
+      countryCodeRules: [],
       phoneNumber: '',
-      phoneNumberRules: [
-        v => !!v || 'Phone Number is required'
+      phoneNumberRules: [],
+    }),
+    beforeMount(){
+      this.countryCode = this.$i18n.t('countryCode')
+      
+      this.countryCodeRules = [
+        (v) => required(v) || this.$i18n.t('validations.required')
       ]
-    })
+
+      this.phoneNumberRules = [
+        (v) => required(v) || this.$i18n.t('validations.required')
+      ]
+    }
   }
 </script>
-
-<style>
-
-</style>
